@@ -10,13 +10,15 @@
 import 'package:flutter/cupertino.dart';
 
 /* COLOR FOR */
-const PRIMARY_COLOR = Color(0xff7990DD);
-const SECONDARY_COLOR = Color(0xff374ABE);
+const PRIMARY_COLOR = Color(0xffFFC405);
+const SECONDARY_COLOR = Color(0xffEF0505);
 
 final gradientPrimary = LinearGradient(
     colors: [PRIMARY_COLOR, SECONDARY_COLOR],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter);
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight);
 
 /* IMGS */
-const IMG_CADEIRAC ="assets/imgs/cadeira.png";
+const IMG_CADEIRA ="assets/imgs/cadeira.png";
+const IMG_RELOGIO = "assets/imgs/relogio.png";
+const IMG_TELEVISAO = "assets/imgs/televisao.png";

@@ -7,7 +7,7 @@
  * Site: https://dorivaldodossantos.herokuapp.com
  */
 
-import 'package:ecommerce_app/app/pages/details_page.dart';
+import 'package:ecommerce_app/app/pages/details_page/details_page.dart';
 import 'package:ecommerce_app/app/utils/colors_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/app/utils/size_context_util.dart';
@@ -23,51 +23,51 @@ class CardProdutComponent extends StatelessWidget {
         child: InkWell(
           onTap: () => Navigator.of(context).push(PageRouteBuilder(
               pageBuilder: (context, a, b) => DetailsPage(index: index))),
-          child: Hero(
-            tag: "background$index",
-            child: Container(
-              margin: EdgeInsets.only(right: 25),
-              width: context.sizeDevice.width * .5,
-              height: context.sizeDevice.height * .26,
-              decoration: BoxDecoration(
-                gradient: gradientPrimary,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(8),
-                  bottomRight: Radius.circular(20),
-                  bottomLeft: Radius.circular(8)
-                )
-              ),
-              child: Stack(
-                children: [
-                  Center(
+          child: Container(
+            margin: EdgeInsets.only(right: 25),
+            width: context.sizeDevice.width * .5,
+            height: context.sizeDevice.height * .26,
+            decoration: BoxDecoration(
+              gradient: gradientPrimary,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(8),
+                bottomRight: Radius.circular(20),
+                bottomLeft: Radius.circular(8)
+              )
+            ),
+            child: Stack(
+              children: [
+                Center(
+                  child: Hero(
+                    tag: "background$index",
                     child: Image.asset(
-                      IMG_CADEIRAC,
+                      IMG_CADEIRA,
                       width: context.sizeDevice.width * .4,
                       height: context.sizeDevice.height * .3,
                       fit: BoxFit.cover,
                     ),
                   ),
+                ),
 
-                  Positioned(
-                    bottom: -1,
-                    right: 0,
-                    child: Container(
-                      height: 25,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(20),
-                          topLeft: Radius.circular(20)
-                        )
-                      ),
-                      alignment: Alignment.center,
-                      child: Text("120.000 Kzs", style: TextStyle(color: PRIMARY_COLOR),),
+                Positioned(
+                  bottom: -1,
+                  right: 0,
+                  child: Container(
+                    height: 25,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(20),
+                        topLeft: Radius.circular(20)
+                      )
                     ),
-                  )
-                ],
-              ),
+                    alignment: Alignment.center,
+                    child: Text("120.000 Kzs", style: TextStyle(color: PRIMARY_COLOR),),
+                  ),
+                )
+              ],
             ),
           ),
         ),

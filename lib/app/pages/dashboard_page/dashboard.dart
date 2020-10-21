@@ -7,7 +7,9 @@
  * Site: https://dorivaldodossantos.herokuapp.com
  */
 
+import 'package:ecommerce_app/app/pages/cart_page/cart_page.dart';
 import 'package:ecommerce_app/app/pages/dashboard_page/components/card_produt_component.dart';
+import 'package:ecommerce_app/app/utils/colors_utils.dart';
 import 'package:ecommerce_app/app/widgets/gradient_icon_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +40,12 @@ class _DashboardPageState extends State<DashboardPage> {
                     GradientIcon(CupertinoIcons.text_alignleft, 25),
                     Spacer(),
                     GradientIcon(CupertinoIcons.search, 25),
-                    GradientIcon(CupertinoIcons.shopping_cart, 25),
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => CartPage())
+                      ),
+                      child: GradientIcon(CupertinoIcons.shopping_cart, 25)
+                    ),
                   ],
                 ),
                 SizedBox(height: 10,),
@@ -61,18 +68,94 @@ class _DashboardPageState extends State<DashboardPage> {
        
           Spacer(),
           Container(
-            height: context.sizeDevice.height * .35,
-
+            height: context.sizeDevice.height * .25,
             child: ListView(
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 15),
               physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               children: List.generate(4, (index) => CardProdutComponent(index: index,),)
             ),
           ),
+
+          SizedBox(height: 10,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Novos Produtos"
+                ),
+                Spacer(),
+                GradientIcon(CupertinoIcons.arrow_left, 20),
+                GradientIcon(CupertinoIcons.arrow_right, 20),
+              ],
+            ),
+          ),
+          SizedBox(height: 10,),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: Row(
+              children: List.generate(2, (index) => Expanded(
+                child: Card(
+                  elevation: 5,
+                  margin: EdgeInsets.only(right: 20),
+                  shadowColor: Colors.grey.withOpacity(.3),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GradientIcon(index.isOdd ? CupertinoIcons.heart_slash : CupertinoIcons.heart, 20),
+                            GradientIcon(CupertinoIcons.shopping_cart, 20),
+                          ],
+                        ),
+                      ),
+                      Image.asset(
+                        !index.isOdd ? IMG_RELOGIO : IMG_CADEIRA,
+                        height: 90,
+                      ),
+
+                      SizedBox(height: 10,),
+                      Text("SEA-DWELLER"),
+                      SizedBox(height: 5,),
+                      Text("120.00 kZS"),
+                      SizedBox(height: 10,),
+
+                      !(index.isOdd)
+                      ? Container(
+                        height: 30,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: gradientPrimary
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "COMPRAR AGORA",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )
+                      : SizedBox(height: 30, width: double.infinity,)
+                    ],
+                  ),
+                ),
+              )),
+            ),
+          ),
           Spacer()
         ],
-      )
+      ),
+      bottomNavigationBar: Container(
+        height: 40,
+        width: context.sizeDevice.width,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //children: List.generate(length, (index) => null)
+        ),
+      ),
     );
   }
 }
